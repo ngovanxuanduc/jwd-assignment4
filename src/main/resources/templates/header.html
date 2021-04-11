@@ -1,0 +1,25 @@
+<header>
+    <style>
+        .btn:focus {
+            background-color: rgb(207, 198, 238);
+        }
+
+        .btn:active {
+        }
+    </style>
+    <h3 class="p-3">Blog</h3>
+    <nav class="navbar navbar-light bg-primary pb-0">
+        <div class="row text-white">
+            <a class="btn p-3 border-0 ml-3" type="button" th:href="home">Home</a>
+            <a class="btn p-3" type="button" th:href="about">About</a>
+            <a class="btn p-3" type="button" href="#">Contact</a>
+            <a class="btn p-3" type="button"  th:if=" ${session.user == null}" th:href="login">Login</a>
+            <div class="d-inline"  th:unless=" ${session.user == null}">
+                <a class="btn p-3" type="button" th:href="createpost">Create post</a>
+                <a class="btn p-3" type="button" th:href="managepost">Manage Post</a>
+                <a class="btn p-3" type="button" th:href="logout">Logout(<span th:text="${session.user}"></span>)</a>
+            </div>
+
+        </div>
+    </nav>
+</header>

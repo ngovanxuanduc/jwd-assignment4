@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" th:href="@{/bootstrap-4.6.0/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+</head>
+<header th:replace="header :: header">
+</header>
+<body>
+<div class=" mt-5">
+  <div class="row p-3">
+    <div class="col-md-8">
+      <p class="h2">Manage Post</p>
+      <table class="table table-hover table-striped mt-5">
+        <thead class="thead-success "
+               style="background-color: #a1c4fd; border-radius: 2px; padding: 4px">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tittle</th>
+          <th scope="col">Status</th>
+          <th scope="col">Create Time</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${content.getPosts()}">
+          <th scope="row" th:text="${post.getId()}"></th>
+          <th scope="row" th:text="${post.getTitle()}"></th>
+          <th scope="row" th:text="${post.getStatus()}"></th>
+          <th scope="row" th:text="${post.createTime}"></th>
+          <td>
+            <a th:href="@{editpost(id=${post.getId()})}"><i class="fa fa-edit"></i></a>
+            <a th:href="@{getcomment(id=${post.getId()})}"><i class="fa fa-search-plus"></i></a>
+            <a th:href="@{delepost(id=${post.getId()})}"><i class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+
+<!--        <tr>-->
+<!--          <td scope="col" rowspan="4">Emty</td>-->
+<!--        </tr>-->
+
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-md-4 ">
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-12">
+          <p
+                  style="background-color: #a1c4fd; border-radius: 2px; padding: 4px">
+            <Strong class="ml-2">Demo</Strong>
+          </p>
+        </div>
+        <div class="col-12">
+          <a th:href="createpost" class="ml-2">Create New Post</a>
+        </div>
+        <div class="col-12">
+          <a href='<c:url value = "/commentmm"/>' class="ml-2">Approve Comments</a>
+        </div>
+        <div class="col-12">
+          <a th:href="logout" class="ml-2">Logout</a>
+        </div>
+
+      </div>
+      <div class="row " style="margin-bottom: 20px">
+        <div class="col-12 ">
+          <p style="background-color: #a1c4fd; border-radius: 2px; padding: 4px">
+            <Strong class="ml-2">Tag</Strong>
+          </p>
+        </div>
+
+        <div class="col-12">
+          <div class="d-inline-block ml-2" th:each="tag : ${content.getTags()}">
+            <a href="#" th:text="${tag}"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row " style="margin-bottom: 20px">
+        <div class="col-12">
+          <p
+                  style="background-color: #a1c4fd; border-radius: 2px; padding: 4px">
+            <Strong class="ml-2">Recent Comments</Strong>
+          </p>
+        </div>
+
+        <div class="col-12">
+          <span class="ml-2">Tester on </span><a href="#">A Test Post</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+<footer th:replace="footer :: footer"></footer>
+</html>

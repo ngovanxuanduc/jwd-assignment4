@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/bootstrap-4.6.0/css/bootstrap.css}">
+</head>
+<header th:replace="header :: header">
+</header>
+<body>
+<div class="row p-3">
+    <div class="col-10">
+        <!--/*@thymesVar id="posts" type="fa.training.blog.payload.response.HomeContentResp"*/-->
+        <div class="container mb-4" th:each="item : ${content.getPosts()}">
+            <h3 th:text="${item.getTitle()}"></h3>
+            <p >
+                posted by <span th:text="${item.getAuthorName()} "/>
+                on <span th:text="${#dates.format(item.getCreateTime(), 'MMM, dd yyyy')}"/>
+            </p>
+            <p th:text="${item.getContent()}">
+            </p>
+            <div class="row">
+                <div class="col">
+                    <span class="font-weight-bold">Tags: </span>
+                    <div class="d-inline-block ml-2" th:each="tag : ${item.getTags()}">
+                        <a href="#" th:text="${tag}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="#">Permalink</a>
+                    <span>|</span>
+                    <a href="#"> Comment(<span th:text="${item.getAmountComment()}"> </span>)</a>
+                    <span> Last Update on </span>
+                    <span th:text="${#dates.format(item.getUpdateTime(), 'MMM, dd yyyy')}"> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menu Left -->
+    <div class="col-2">
+        <div class="row mb-4">
+            <div class="col">
+            <span class="font-weight-bold bg-primary d-inline-block w-100"
+            >Tags:
+            </span>
+                <div class="" >
+                    <a class="p-1" href="#" th:each="tag : ${content.getTags()}" th:text="${tag}"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+            <span class="font-weight-bold bg-primary d-inline-block w-100"
+            >Tags:
+            </span>
+                <div class="">
+                    <a href="#">blog</a>
+                    <a href="#">blog</a>
+                    <a href="#">blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<footer th:replace="footer :: footer"> </footer>
+</html>

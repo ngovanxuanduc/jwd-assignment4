@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 	
-	@GetMapping("/")
-	public String login() {
-		return "Login ok";
-	}
+//	@GetMapping("/")
+//	public String login() {
+//		return "Login ok";
+//	}
 }

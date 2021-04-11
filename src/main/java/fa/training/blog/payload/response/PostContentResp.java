@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class PostContentResp {
+	private int id;
 	private String title;
 	private String content;
 	private Date createTime;
@@ -20,4 +21,5 @@ public class PostContentResp {
 	private List<String> tags;
 	private int amountComment;
 	private Date updateTime;
+	private String status;
 }

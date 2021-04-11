@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-4.6.0/css/bootstrap.css}">
+</head>
+<header th:replace="header :: header">
+</header>
+<body>
+<div class="container p-3">
+    <p class="h2 font-weight-bold">Login</p>
+    <p class="mt-1">Please fill out following form with your login
+        credentials</p>
+    <p class="mt-1 font-italic font-weight-light">
+        Fields with <span class="text-danger">*</span> are required
+    </p>
+
+    <form action="#" th:action="@{/login}" method="post">
+        <table>
+            <tr>
+                <td>User Name:</td>
+                <td><input type="text" name="username"/></td>
+                <!-- <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" >Name Error</td> -->
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password"/></td>
+                <!--    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Age Error</td> -->
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+</body>
+<footer th:replace="footer :: footer"></footer>
+</html>

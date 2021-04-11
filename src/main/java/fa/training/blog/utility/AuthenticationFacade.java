@@ -14,4 +14,8 @@ public class AuthenticationFacade {
     public UserPrinciple getUserPrinciple(){
         return (UserPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
+    public Integer getUserID(){
+        return getUserPrinciple().getUser().getId();
+    }
 }

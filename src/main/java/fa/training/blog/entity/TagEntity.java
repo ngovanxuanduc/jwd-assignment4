@@ -37,12 +37,10 @@ public class TagEntity {
 	@Column(name = "frequency")
 	private int frequency;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@JoinTable(name = "tbl_tag_post"
-	, joinColumns = @JoinColumn(name = "tag_id")
-	, inverseJoinColumns = @JoinColumn(name = "post_id"))
+
 	private Collection<PostEntity> posts;
 
 	public TagEntity(String name) {
