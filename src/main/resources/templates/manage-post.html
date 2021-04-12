@@ -18,7 +18,7 @@
         <thead class="thead-success "
                style="background-color: #a1c4fd; border-radius: 2px; padding: 4px">
         <tr>
-          <th scope="col">#</th>
+<!--           <th scope="col">#</th> -->
           <th scope="col">Tittle</th>
           <th scope="col">Status</th>
           <th scope="col">Create Time</th>
@@ -27,20 +27,17 @@
         </thead>
         <tbody>
         <tr th:each="post : ${content.getPosts()}">
-          <th scope="row" th:text="${post.getId()}"></th>
+<!--           <th scope="row" th:text="${post.getId()}"></th> -->
           <th scope="row" th:text="${post.getTitle()}"></th>
           <th scope="row" th:text="${post.getStatus()}"></th>
           <th scope="row" th:text="${post.createTime}"></th>
           <td>
             <a th:href="@{editpost(id=${post.getId()})}"><i class="fa fa-edit"></i></a>
-            <a th:href="@{getcomment(id=${post.getId()})}"><i class="fa fa-search-plus"></i></a>
+            <a th:href="@{mcomments(id=${post.getId()})}"><i class="fa fa-search-plus"></i></a>
             <a th:href="@{delepost(id=${post.getId()})}"><i class="fa fa-trash"></i></a>
           </td>
         </tr>
 
-<!--        <tr>-->
-<!--          <td scope="col" rowspan="4">Emty</td>-->
-<!--        </tr>-->
 
         </tbody>
       </table>

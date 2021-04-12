@@ -1,5 +1,6 @@
 package fa.training.blog.utility;
 
+import fa.training.blog.constant.CommentStatus;
 import fa.training.blog.constant.PostStatus;
 import fa.training.blog.entity.PostEntity;
 import fa.training.blog.entity.TagEntity;
@@ -20,7 +21,8 @@ public class DTOHelpler {
                 .updateTime(pE.getUpdateDate())
                 .authorName(pE.getAuthor().getUserName())
                 .tags(toTagNames(pE.getTags()))
-                .amountComment(pE.getComments().size())
+//                .amountComment(pE.getComments().size())
+                .amountComment(Math.toIntExact(pE.getComments().stream().filter(cmt -> cmt.getStatus() == CommentStatus.APPROVE).count()))
                 .status(getStatus(pE.getStatus()))
                 .build();
         return resp;
@@ -37,12 +39,12 @@ public class DTOHelpler {
     }
 
     public static PostContentReq toDTOReq(PostEntity pe){
-        PostContentReq.builder()
+        return PostContentReq.builder()
+        		.id(pe.getId())
                 .title(pe.getTitle())
                 .content(pe.getContent())
                 .status(pe.getStatus())
                 .tags(pe.getTags().stream().map(TagEntity::getName).collect(Collectors.joining(", ")))
                 .build();
-        return null;
     }
 }

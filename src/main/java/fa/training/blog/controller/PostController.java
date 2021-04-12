@@ -52,6 +52,7 @@ public class PostController {
 //            return "doan nay tra ve trang create Post Method: GET";
             return "redirect:/createpost";
         }
+//        System.err.println(postContentReq);
         //TODO: lay du lieu luu vao DB
         System.out.println("Luu Xong: " + postService.createPost(postContentReq));
 
@@ -62,20 +63,24 @@ public class PostController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = {"/delepost"})
     public String deletepost(@RequestParam(value = "id", required = false) Integer id) {
-        System.out.println("-----------id" + id);
+        System.err.println("-----------id" + id);
         if (id != null) {
             postService.deletePost(id);
         }
         return "redirect:/managepost";
 
     }
+    
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = {"/editpost"})
     public String edit(Model model , @RequestParam(value = "id",  required = false) Integer id , HttpSession session) {
-        if (id != null) {
+    	//kiem tra id, kiem tra co phai bai post cua thang author hay ko
+//    	System.err.println("-----------id" + id);
+        if (id == null) {
             return "redirect:/managepost";
         }
+//        System.err.println(postService.getPostContentReqByIdAndAuthorID(id));
         model.addAttribute("post", postService.getPostContentReqByIdAndAuthorID(id));
-        session.setAttribute("editpost",);
-        return "createpost";
+        return "create-post";
     }
 }

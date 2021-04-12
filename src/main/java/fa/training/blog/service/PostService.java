@@ -29,6 +29,7 @@ public class PostService {
         List<TagEntity> tagList = getTagListInDBAndSaveIfNotExist(tags);
         //luu post vao db ne
         PostEntity postEntity = PostEntity.builder()
+        		.id(pCR.getId())
                 .title(pCR.getTitle())
                 .content(pCR.getContent())
                 .status(pCR.getStatus())

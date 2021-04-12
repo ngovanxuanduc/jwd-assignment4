@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-4.6.0/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+</head>
+<header th:replace="header :: header"></header>
+<body>
+
+<div class="row">
+
+    <div class="container mb-4">
+        <!-- 			<h3 th:text="${ccr.getPost().getId()}"></h3> -->
+        <!--/*@thymesVar id="ccr" type="fa.training.blog.payload.response.CommentContentResp"*/-->
+        <h3 th:text="${ccr.getPost().getTitle()}"></h3>
+        <p>
+            posted by <span th:text="${ccr.getPost().getAuthorName()} "/> on <span
+                th:text="${#dates.format(ccr.getPost().getCreateTime(), 'MMM, dd yyyy')}"/>
+        </p>
+        <p th:text="${ccr.getPost().getContent()}"></p>
+        <div class="row">
+            <div class="col">
+                <span class="font-weight-bold">Tags: </span>
+                <div class="d-inline-block ml-2"
+                     th:each="tag : ${ccr.getPost().getTags()}">
+                    <a href="#" th:text="${tag}"></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 	<h1 th:text="${ccr.getComments().size()}"></h1> -->
+<div class="container">
+    <div class="row" th:each="cmt : ${ccr.getComments()}"
+         style="margin: 10px; padding: 10px; border: 1px solid blue">
+        <div class="col-8">
+            <div class="row">
+                <p>
+                    Name: <span th:text="${cmt.getAuthor()}"/> - <span
+                        th:text="${cmt.getEmail()}"/>
+                </p>
+            </div>
+            <p>
+                Create Date: <span
+                    th:text="${#dates.format(cmt.getCreateDate(), 'MMM, dd yyyy')}">
+					</span>
+            </p>
+
+            <p>
+                Content: <span th:text="${cmt.getContent()}"></span>
+            </p>
+
+        </div>
+        <div class="col-4">
+            <a th:href="@{approvecmt(id=${cmt.getId()})}" th:if="${cmt.getStatus()==1}"><i class="fas fa-check"></i></a>
+            <a th:href="@{deletecmt(id=${cmt.getId()})}"><i class="far fa-trash-alt"></i></a>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+<footer th:replace="footer :: footer"></footer>
+</html>

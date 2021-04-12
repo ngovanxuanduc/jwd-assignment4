@@ -14,7 +14,8 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Builder
 public class PostContentReq {
-
+	private int id;
+	
     @NotBlank(message = "Title Not Blank")
     private String title;
 

@@ -40,7 +40,6 @@ public class TagEntity {
 	@ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-
 	private Collection<PostEntity> posts;
 
 	public TagEntity(String name) {

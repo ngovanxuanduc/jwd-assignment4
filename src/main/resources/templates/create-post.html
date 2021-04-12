@@ -17,6 +17,8 @@
                 Fields with <span class="text-danger">*</span> are required
             </p>
             <form id="PostModal" th:action="@{/createpost}" th:object="${post}" method="post" class="mt-3">
+            	<input th:field="*{id}" th:value="*{id}" id="id" class="form-control" hidden="true"/>
+                           
                 <div class="form-group ">
                     <label for="title" class="font-weight-bold">Title
                         <span class ="text-danger">*</span></label>

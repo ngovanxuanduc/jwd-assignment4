@@ -50,9 +50,9 @@ public class PostEntity {
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	@EqualsAndHashCode.Exclude // không sử dụng trường này trong equals và hashcode
 	@ToString.Exclude // Khong sử dụng trong toString()
-	private Collection<Comment> comments;
+	private Collection<CommentEntity> comments;
 	
-	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@JoinTable(name = "tbl_tag_post"

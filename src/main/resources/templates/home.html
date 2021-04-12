@@ -32,7 +32,8 @@
                 <div class="col">
                     <a href="#">Permalink</a>
                     <span>|</span>
-                    <a href="#"> Comment(<span th:text="${item.getAmountComment()}"> </span>)</a>
+                    
+                    <a th:href="@{comment(id=${item.getId()})}"> Comment(<span th:text="${item.getAmountComment()}"> </span>)</a>
                     <span> Last Update on </span>
                     <span th:text="${#dates.format(item.getUpdateTime(), 'MMM, dd yyyy')}"> </span>
                 </div>
